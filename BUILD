@@ -1,0 +1,11 @@
+docker_environment(
+    name="docker_linux",
+    platform="linux_x86_64",
+    image="jwardamp/pants-docker-environment-bug:20241104-01",
+    python_bootstrap_search_path=["<PATH>"],
+    docker_env_vars=[
+        "HOME",
+        "DOCKER_HOME=/var/run/docker.sock",
+        "DOCKER_CONFIG=%(homedir)s/.docker"
+    ],
+)

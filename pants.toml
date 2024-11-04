@@ -1,0 +1,35 @@
+[GLOBAL]
+pants_version = "2.22.1"
+backend_packages = [
+    "pants.backend.build_files.fmt.black",
+    "pants.backend.docker",
+    "pants.backend.python",
+]
+
+[docker]
+build_verbose = true
+build_args = [
+  "HOME",
+]
+env_vars = [
+    "DOCKER_CONFIG=%(homedir)s/.docker",
+]
+tools = [
+  #"docker-credential-osxkeychain",
+]
+
+[python]
+interpreter_constraints = ["CPython==3.12.*"]
+
+[python-bootstrap]
+search_path = [
+    "<PYENV>", # This will use all interpreters in `$(pyenv root)/versions
+]
+
+[subprocess-environment]
+env_vars.add = [
+    "HOME",
+]
+
+[environments-preview.names]
+docker_linux = "//:docker_linux"
